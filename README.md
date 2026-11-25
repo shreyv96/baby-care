@@ -23,8 +23,11 @@ share one live log through Firebase.
 5. **Project settings → Your apps → Web (</>)** → register an app → copy the `firebaseConfig` values into `firebase-config.js`.
 
 ### 2. Hosting (the link you both open)
-GitHub Pages: push this folder to a repo, then **Settings → Pages → Deploy from branch → main / root**.
-Any static host works (Firebase Hosting, Netlify). It must be served over HTTPS.
+**Firebase Hosting (keeps the repo private):** on a computer with Node.js, in this folder run
+`npx firebase-tools login` then `npx firebase-tools deploy`. This publishes the app to
+https://baby-care-2a43d.web.app and uploads `firestore.rules` in the same step.
+
+**Or GitHub Pages:** needs a public repo (or a paid plan), then **Settings → Pages → Deploy from branch → main / root**.
 
 ### 3. Install on the phones
 - **Galaxy Fold (Chrome or Samsung Internet)**: open the link → menu → **Add to Home screen / Install app**.
