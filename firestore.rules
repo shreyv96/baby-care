@@ -1,0 +1,15 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Each family's data lives under /families/{familyCode}/...
+    // The family code is a long random secret shared only between the parents.
+    // Any signed-in (anonymous) app user who knows the code can read and write it;
+    // nobody can list all families.
+    match /families/{familyId}/{kind}/{docId} {
+      allow get, list: if request.auth != null;
+      allow write: if request.auth != null
+        && kind in ['entries', 'routines', 'meta']
+        && request.resource.size() < 60;
+    }
+  }
+}
